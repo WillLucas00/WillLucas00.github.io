@@ -1,24 +1,79 @@
-gdjs.DeathCode = {};
-gdjs.DeathCode.GDTextObjects1= [];
-gdjs.DeathCode.GDTextObjects2= [];
-gdjs.DeathCode.GDrobotObjects1= [];
-gdjs.DeathCode.GDrobotObjects2= [];
+gdjs.VictoryCode = {};
+gdjs.VictoryCode.GDTextObjects1= [];
+gdjs.VictoryCode.GDTextObjects2= [];
+gdjs.VictoryCode.GDTextObjects3= [];
+gdjs.VictoryCode.GDrobotObjects1= [];
+gdjs.VictoryCode.GDrobotObjects2= [];
+gdjs.VictoryCode.GDrobotObjects3= [];
 
-gdjs.DeathCode.conditionTrue_0 = {val:false};
-gdjs.DeathCode.condition0IsTrue_0 = {val:false};
-gdjs.DeathCode.condition1IsTrue_0 = {val:false};
+gdjs.VictoryCode.conditionTrue_0 = {val:false};
+gdjs.VictoryCode.condition0IsTrue_0 = {val:false};
+gdjs.VictoryCode.condition1IsTrue_0 = {val:false};
 
 
-gdjs.DeathCode.eventsList0 = function(runtimeScene) {
+gdjs.VictoryCode.eventsList0 = function(runtimeScene) {
 
 {
 
 
-gdjs.DeathCode.condition0IsTrue_0.val = false;
+gdjs.VictoryCode.condition0IsTrue_0.val = false;
 {
-gdjs.DeathCode.condition0IsTrue_0.val = gdjs.evtTools.input.wasKeyReleased(runtimeScene, "Space");
-}if (gdjs.DeathCode.condition0IsTrue_0.val) {
-{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Start", false);
+gdjs.VictoryCode.condition0IsTrue_0.val = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
+}if (gdjs.VictoryCode.condition0IsTrue_0.val) {
+{gdjs.evtTools.runtimeScene.resetTimer(runtimeScene, "TotalTime");
+}}
+
+}
+
+
+{
+
+
+gdjs.VictoryCode.condition0IsTrue_0.val = false;
+{
+gdjs.VictoryCode.condition0IsTrue_0.val = gdjs.evtTools.runtimeScene.timerElapsedTime(runtimeScene, 1, "TotalTime");
+}if (gdjs.VictoryCode.condition0IsTrue_0.val) {
+{runtimeScene.getGame().getVariables().getFromIndex(8).add(1);
+}{gdjs.evtTools.runtimeScene.resetTimer(runtimeScene, "TotalTime");
+}}
+
+}
+
+
+};gdjs.VictoryCode.eventsList1 = function(runtimeScene) {
+
+{
+
+
+gdjs.VictoryCode.condition0IsTrue_0.val = false;
+{
+gdjs.VictoryCode.condition0IsTrue_0.val = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
+}if (gdjs.VictoryCode.condition0IsTrue_0.val) {
+gdjs.copyArray(runtimeScene.getObjects("robot"), gdjs.VictoryCode.GDrobotObjects1);
+{for(var i = 0, len = gdjs.VictoryCode.GDrobotObjects1.length ;i < len;++i) {
+    gdjs.VictoryCode.GDrobotObjects1[i].setAnimationName("cheer");
+}
+}{gdjs.evtTools.sound.playMusicOnChannel(runtimeScene, "Sci-Fi Main Menu Screen Theme (Game Sound Effect).mp3", 0, true, gdjs.evtTools.common.getVariableNumber(runtimeScene.getGame().getVariables().getFromIndex(3)), 1);
+}}
+
+}
+
+
+{
+
+
+gdjs.VictoryCode.eventsList0(runtimeScene);
+}
+
+
+{
+
+
+gdjs.VictoryCode.condition0IsTrue_0.val = false;
+{
+gdjs.VictoryCode.condition0IsTrue_0.val = gdjs.evtTools.input.wasKeyReleased(runtimeScene, "Escape");
+}if (gdjs.VictoryCode.condition0IsTrue_0.val) {
+{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Level Select", false);
 }}
 
 }
@@ -26,17 +81,19 @@ gdjs.DeathCode.condition0IsTrue_0.val = gdjs.evtTools.input.wasKeyReleased(runti
 
 };
 
-gdjs.DeathCode.func = function(runtimeScene) {
+gdjs.VictoryCode.func = function(runtimeScene) {
 runtimeScene.getOnceTriggers().startNewFrame();
 
-gdjs.DeathCode.GDTextObjects1.length = 0;
-gdjs.DeathCode.GDTextObjects2.length = 0;
-gdjs.DeathCode.GDrobotObjects1.length = 0;
-gdjs.DeathCode.GDrobotObjects2.length = 0;
+gdjs.VictoryCode.GDTextObjects1.length = 0;
+gdjs.VictoryCode.GDTextObjects2.length = 0;
+gdjs.VictoryCode.GDTextObjects3.length = 0;
+gdjs.VictoryCode.GDrobotObjects1.length = 0;
+gdjs.VictoryCode.GDrobotObjects2.length = 0;
+gdjs.VictoryCode.GDrobotObjects3.length = 0;
 
-gdjs.DeathCode.eventsList0(runtimeScene);
+gdjs.VictoryCode.eventsList1(runtimeScene);
 return;
 
 }
 
-gdjs['DeathCode'] = gdjs.DeathCode;
+gdjs['VictoryCode'] = gdjs.VictoryCode;
